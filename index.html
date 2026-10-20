@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALIXON AI STUDIO - Vidéos publicitaires et visuels avec l'IA</title>
+  <meta name="description" content="ALIXON AI STUDIO crée des vidéos publicitaires, des publicités pour parfums et cosmétiques, des contenus TikTok, Facebook, Instagram et des affiches avec l'intelligence artificielle.">
+  <style>
+    :root {
+      --blue-900: #071a3a;
+      --blue-700: #0f3d8a;
+      --blue-500: #1d6bd6;
+      --blue-100: #e9f2ff;
+      --white: #ffffff;
+      --text: #1b2536;
+      --muted: #4b5870;
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(7, 26, 58, 0.10);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--blue-700); }
+    .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 64px 0; }
+    .alt { background: var(--blue-100); }
+    h1, h2, h3 { color: var(--blue-900); line-height: 1.25; }
+    h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); text-align: center; margin-bottom: 12px; }
+    .lead { text-align: center; color: var(--muted); max-width: 680px; margin: 0 auto 32px; }
+    .btn {
+      display: inline-block;
+      background: var(--blue-500);
+      color: var(--white);
+      border: none;
+      padding: 13px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: inherit;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .btn:hover { background: var(--blue-700); transform: translateY(-2px); }
+    .btn-light { background: var(--white); color: var(--blue-900); }
+    .btn-light:hover { background: var(--blue-100); }
+    .btn-small { padding: 10px 18px; font-size: 0.9rem; }
+
+    /* En-tête */
+    header.site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--blue-900);
+      color: var(--white);
+    }
+    .nav-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; }
+    .brand { color: var(--white); text-decoration: none; font-weight: 800; letter-spacing: 1px; }
+    .brand span { color: #9cc7ff; }
+    .menu-btn {
+      background: none; border: none; color: var(--white);
+      font-size: 1.8rem; cursor: pointer; line-height: 1;
+    }
+    nav.menu { display: none; flex-direction: column; background: var(--blue-900); }
+    nav.menu.open { display: flex; }
+    nav.menu a {
+      color: var(--white); text-decoration: none;
+      padding: 13px 22px; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    nav.menu a:hover { background: var(--blue-700); }
+
+    /* Accueil */
+    .hero {
+      background: linear-gradient(160deg, var(--blue-900), var(--blue-700));
+      color: var(--white);
+      text-align: center;
+      padding: 130px 20px 80px;
+    }
+    .hero h1 { color: var(--white); font-size: clamp(1.9rem, 6vw, 3rem); margin-bottom: 14px; }
+    .hero .slogan { font-size: clamp(1rem, 2.6vw, 1.2rem); color: #d6e6ff; max-width: 640px; margin: 0 auto 28px; }
+    .hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+    /* Cartes services */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px 22px;
+      border-top: 4px solid var(--blue-500);
+      display: flex; flex-direction: column;
+      transition: transform 0.25s;
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card .icon { font-size: 2rem; margin-bottom: 8px; }
+    .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 10px; }
+    .card ul { color: var(--muted); font-size: 0.93rem; margin: 0 0 12px 18px; }
+    .card .price { color: var(--blue-700); font-weight: 700; margin: 8px 0 14px; font-size: 0.97rem; }
+    .card .btn { margin-top: auto; text-align: center; }
+    .note { font-size: 0.85rem; color: var(--muted); margin-top: 8px; font-style: italic; }
+
+    /* Tarifs */
+    .price-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .price-table th, .price-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #e3eaf5; font-size: 0.95rem; }
+    .price-table th { background: var(--blue-900); color: var(--white); }
+    .table-wrap { overflow-x: auto; }
+
+    /* Portfolio */
+    .portfolio { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+    .slot {
+      background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
+    }
+    .slot .frame {
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, var(--blue-500), var(--blue-900));
+      color: var(--white); display: flex; align-items: center; justify-content: center;
+      font-weight: 700; text-align: center; padding: 10px;
+    }
+    .slot .info { padding: 14px 16px; }
+    .slot .info h3 { font-size: 1rem; margin-bottom: 4px; }
+    .slot .info p { font-size: 0.88rem; color: var(--muted); }
+    .demo-tag {
+      display: inline-block; margin-top: 8px; font-size: 0.75rem;
+      background: var(--blue-100); color: var(--blue-700); padding: 3px 10px; border-radius: 20px;
+    }
+
+    /* Commande */
+    .form-box {
+      max-width: 680px; margin: 0 auto; background: var(--white);
+      border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px 22px;
+    }
+    .form-row { margin-bottom: 16px; }
+    .form-row label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95rem; }
+    .form-row label .req { color: #c0392b; }
+    .form-row input, .form-row select, .form-row textarea {
+      width: 100%; padding: 12px; font-size: 1rem; font-family: inherit;
+      border: 1.5px solid #c9d6ea; border-radius: 10px; background: var(--white); color: var(--text);
+    }
+    .form-row textarea { min-height: 110px; resize: vertical; }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+      outline: none; border-color: var(--blue-500);
+    }
+    .two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-status { margin-top: 14px; padding: 12px; border-radius: 10px; display: none; font-size: 0.95rem; }
+    .form-status.show { display: block; }
+    .form-status.ok { background: #e6f7ec; color: #1e6b3a; }
+    .form-status.error { background: #fdeaea; color: #8b1e1e; }
+
+    /* Process */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; counter-reset: step; }
+    .step {
+      background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 22px 16px; text-align: center;
+    }
+    .step .num {
+      display: inline-flex; width: 38px; height: 38px; align-items: center; justify-content: center;
+      border-radius: 50%; background: var(--blue-500); color: var(--white); font-weight: 700; margin-bottom: 10px;
+    }
+    .step p { font-size: 0.92rem; color: var(--muted); }
+
+    /* FAQ */
+    details {
+      background: var(--white); border-radius: 10px; box-shadow: var(--shadow);
+      margin-bottom: 12px; padding: 16px 18px;
+    }
+    summary { cursor: pointer; font-weight: 700; color: var(--blue-900); }
+    details p { margin-top: 10px; color: var(--muted); font-size: 0.95rem; }
+
+    /* Contact */
+    .contact-info { text-align: center; margin-bottom: 24px; color: var(--muted); }
+    .social { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 18px; }
+    .social a {
+      padding: 11px 20px; border-radius: 50px; border: 1.5px solid var(--blue-500);
+      color: var(--blue-700); text-decoration: none; font-weight: 600;
+    }
+    .social a:hover { background: var(--blue-500); color: var(--white); }
+    .is-empty { opacity: 0.5; cursor: not-allowed; }
+
+    /* Légal */
+    .legal details p { font-size: 0.93rem; }
+
+    /* Pied de page */
+    footer { background: var(--blue-900); color: #d6e6ff; padding: 36px 0 24px; text-align: center; }
+    footer .brand { font-size: 1.3rem; }
+    footer .tagline { font-style: italic; margin: 8px 0 16px; }
+    footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 16px; }
+    footer nav a { color: #d6e6ff; text-decoration: none; font-size: 0.92rem; }
+    footer nav a:hover { color: #9cc7ff; }
+    footer .copy { font-size: 0.85rem; opacity: 0.85; }
+
+    @media (min-width: 800px) {
+      .menu-btn { display: none; }
+      nav.menu { display: flex; flex-direction: row; gap: 20px; }
+      nav.menu a { border: none; padding: 6px 0; }
+      .nav-bar { display: grid; grid-template-columns: auto 1fr; }
+      nav.menu { justify-content: flex-end; }
+      section { padding: 90px 0; }
+    }
+    @media (max-width: 560px) {
+      .two-cols { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- EN-TÊTE -->
+  <header class="site-header">
+    <div class="nav-bar">
+      <a href="#accueil" class="brand">ALIXON <span>AI STUDIO</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false">&#9776;</button>
+      <nav class="menu" id="menu">
+        <a href="#services">Services</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#commander">Commander</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ACCUEIL -->
+    <section class="hero" id="accueil">
+      <div class="container">
+        <h1>ALIXON AI STUDIO</h1>
+        <p class="slogan">Votre vision, notre créativité, propulsée par l'intelligence artificielle.</p>
+        <div class="hero-buttons">
+          <a href="#commander" class="btn btn-light">Commander un service</a>
+          <a href="#services" class="btn">Voir nos services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <h2>NOS SERVICES</h2>
+        <p class="lead">Vidéos, publicités et visuels créés avec l'intelligence artificielle pour les entreprises, boutiques, marques et créateurs de contenu.</p>
+
+        <div class="cards">
+
+          <article class="card">
+            <div class="icon">🎬</div>
+            <h3>Vidéos publicitaires avec IA</h3>
+            <p>Vidéos publicitaires originales pour présenter vos produits et services.</p>
+            <ul>
+              <li>Publicités pour petites entreprises</li>
+              <li>Présentation de produits</li>
+              <li>Personnages générés par IA</li>
+              <li>Vidéos pour lancements de produits</li>
+            </ul>
+            <div class="price">Vidéo 10 s : 5 USD · Vidéo 20 s : 10 USD · Pack de 3 vidéos courtes : 12 USD</div>
+            <button class="btn" data-service="Vidéos publicitaires avec IA">Commander ce service</button>
+          </article>
+
+          <article class="card">
+            <div class="icon">🌸</div>
+            <h3>Publicités parfums et cosmétiques</h3>
+            <p>Contenus élégants pour parfums, soins de la peau, maquillage et produits capillaires.</p>
+            <ul>
+              <li>Publicités vidéo luxueuses</li>
+              <li>Présentation cinématique d'un parfum</li>
+              <li>Mise en valeur de l'emballage</li>
+              <li>Visuels pour boutiques de beauté</li>
+            </ul>
+            <div class="price">Affiche : à partir de 3 USD · Vidéo courte : à partir de 5 USD · Pack : sur demande</div>
+            <button class="btn" data-service="Publicités parfums et cosmétiques">Commander ce service</button>
+          </article>
+
+          <article class="card">
+            <div class="icon">📱</div>
+            <h3>Contenus pour TikTok</h3>
+            <p>Vidéos verticales au format 9:16, adaptées aux contenus courts.</p>
+            <ul>
+              <li>Vidéos publicitaires verticales</li>
+              <li>Mini-histoires créatives avec IA</li>
+              <li>Présentation d'entreprise</li>
+            </ul>
+            <div class="price">Vidéo courte : à partir de 5 USD · Pack de 3 vidéos : à partir de 12 USD</div>
+            <p class="note">Nous créons le contenu. Nous ne garantissons pas un nombre de vues ou d'abonnés.</p>
+            <button class="btn" data-service="Contenus pour TikTok">Commander ce service</button>
+          </article>
+
+          <article class="card">
+            <div class="icon">🌐</div>
+            <h3>Contenus Facebook et Instagram</h3>
+            <p>Vidéos, publications et affiches pour vos campagnes et vos Reels.</p>
+            <ul>
+              <li>Vidéos promotionnelles</li>
+              <li>Publications publicitaires</li>
+              <li>Vidéos verticales pour Reels</li>
+              <li>Contenus pour boutiques en ligne</li>
+            </ul>
+            <div class="price">Affiche : à partir de 3 USD · Vidéo : à partir de 5 USD · Pack : sur demande</div>
+            <button class="btn" data-service="Contenus Facebook et Instagram">Commander ce service</button>
+          </article>
+
+          <article class="card">
+            <div class="icon">🎨</div>
+            <h3>Affiches et visuels publicitaires</h3>
+            <p>Affiches, bannières et visuels pour promotions, événements et nouveaux produits.</p>
+            <ul>
+              <li>Affiches promotionnelles</li>
+              <li>Annonces de nouveaux produits</li>
+              <li>Offres spéciales et événements</li>
+              <li>Bannières numériques</li>
+            </ul>
+            <div class="price">Une affiche : à partir de 3 USD</div>
+            <button class="btn" data-service="Affiches et visuels publicitaires">Commander ce service</button>
+          </article>
+
+          <article class="card">
+            <div class="icon">🚀</div>
+            <h3>Packs publicitaires pour entreprises</h3>
+            <p>Packs personnalisés pour les entreprises qui veulent plusieurs contenus.</p>
+            <ul>
+              <li>Exemple : 2 affiches + 2 vidéos courtes</li>
+              <li>Adaptation aux réseaux sociaux</li>
+            </ul>
+            <div class="price">Prix : sur devis, confirmé après discussion du projet</div>
+            <button class="btn" data-service="Packs publicitaires pour entreprises">Commander ce service</button>
+          </article>
+
+          <article class="card">
+            <div class="icon">✨</div>
+            <h3>Créations personnalisées avec IA</h3>
+            <p>Nous étudions vos idées et créons des contenus adaptés à vos objectifs.</p>
+            <ul>
+              <li>Concepts publicitaires originaux</li>
+              <li>Personnages virtuels pour publicités</li>
+              <li>Scènes cinématiques</li>
+            </ul>
+            <div class="price">Prix : sur devis selon la complexité</div>
+            <button class="btn" data-service="Créations personnalisées avec IA">Commander ce service</button>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TARIFS -->
+    <section class="alt" id="tarifs">
+      <div class="container">
+        <h2>TARIFS INDICATIFS (USD)</h2>
+        <p class="lead">Les prix sont indicatifs et peuvent varier selon la complexité du projet. Le prix final est confirmé après examen de votre demande.</p>
+        <div class="table-wrap">
+          <table class="price-table">
+            <thead>
+              <tr><th>Service</th><th>Formule</th><th>Prix</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Vidéos publicitaires IA</td><td>Vidéo 10 secondes</td><td>5 USD</td></tr>
+              <tr><td>Vidéos publicitaires IA</td><td>Vidéo 20 secondes</td><td>10 USD</td></tr>
+              <tr><td>Vidéos publicitaires IA</td><td>Pack de 3 vidéos courtes</td><td>12 USD</td></tr>
+              <tr><td>Parfums et cosmétiques</td><td>Affiche publicitaire</td><td>À partir de 3 USD</td></tr>
+              <tr><td>Parfums et cosmétiques</td><td>Vidéo publicitaire courte</td><td>À partir de 5 USD</td></tr>
+              <tr><td>TikTok</td><td>Vidéo courte</td><td>À partir de 5 USD</td></tr>
+              <tr><td>TikTok</td><td>Pack de 3 vidéos</td><td>À partir de 12 USD</td></tr>
+              <tr><td>Facebook et Instagram</td><td>Affiche / Vidéo</td><td>À partir de 3 / 5 USD</td></tr>
+              <tr><td>Affiches</td><td>Une affiche</td><td>À partir de 3 USD</td></tr>
+              <tr><td>Packs entreprises et créations personnalisées</td><td>Sur devis</td><td>Sur demande</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+      <div class="container">
+        <h2>NOS CRÉATIONS</h2>
+        <p class="lead">Ces emplacements sont des exemples de démonstration. Ils seront remplacés par de vrais projets lorsque vous les ajouterez.</p>
+        <div class="portfolio">
+          <div class="slot">
+            <div class="frame">Exemple de vidéo publicitaire</div>
+            <div class="info"><h3>Vidéos publicitaires</h3><p>Publicité courte pour une petite entreprise.</p><span class="demo-tag">Démonstration</span></div>
+          </div>
+          <div class="slot">
+            <div class="frame">Exemple de publicité parfum</div>
+            <div class="info"><h3>Publicités de parfums</h3><p>Présentation cinématique d'un flacon.</p><span class="demo-tag">Démonstration</span></div>
+          </div>
+          <div class="slot">
+            <div class="frame">Exemple de publicité cosmétique</div>
+            <div class="info"><h3>Publicités de cosmétiques</h3><p>Mise en valeur d'un produit de soin.</p><span class="demo-tag">Démonstration</span></div>
+          </div>
+          <div class="slot">
+            <div class="frame">Exemple d'affiche</div>
+            <div class="info"><h3>Affiches</h3><p>Affiche promotionnelle pour une offre.</p><span class="demo-tag">Démonstration</span></div>
+          </div>
+          <div class="slot">
+            <div class="frame">Exemple de contenu réseaux sociaux</div>
+            <div class="info"><h3>Réseaux sociaux</h3><p>Vidéo verticale pour TikTok ou Reels.</p><span class="demo-tag">Démonstration</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESSUS -->
+    <section class="alt" id="processus">
+      <div class="container">
+        <h2>COMMENT ÇA MARCHE ?</h2>
+        <p class="lead">Six étapes simples, de votre demande jusqu'à la livraison.</p>
+        <div class="steps">
+          <div class="step"><div class="num">1</div><p>Vous choisissez un service.</p></div>
+          <div class="step"><div class="num">2</div><p>Vous remplissez le formulaire de demande.</p></div>
+          <div class="step"><div class="num">3</div><p>Nous examinons le projet et confirmons le prix final.</p></div>
+          <div class="step"><div class="num">4</div><p>Vous recevez les instructions de paiement disponibles.</p></div>
+          <div class="step"><div class="num">5</div><p>La création commence après confirmation des conditions.</p></div>
+          <div class="step"><div class="num">6</div><p>Le contenu final vous est livré selon le délai convenu.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMULAIRE DE COMMANDE -->
+    <section id="commander">
+      <div class="container">
+        <h2>COMMANDER UN SERVICE</h2>
+        <p class="lead">Remplissez ce formulaire. Nous examinerons votre demande et vous contacterons pour confirmer le prix final.</p>
+
+        <form class="form-box" id="orderForm">
+          <div class="two-cols">
+            <div class="form-row">
+              <label for="name">Nom du client <span class="req">*</span></label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-row">
+              <label for="email">Adresse e-mail <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required>
+            </div>
+          </div>
+          <div class="two-cols">
+            <div class="form-row">
+              <label for="country">Pays <span class="req">*</span></label>
+              <input type="text" id="country" name="country" required>
+            </div>
+            <div class="form-row">
+              <label for="company">Nom de l'entreprise</label>
+              <input type="text" id="company" name="company">
+            </div>
+          </div>
+          <div class="two-cols">
+            <div class="form-row">
+              <label for="service">Service souhaité <span class="req">*</span></label>
+              <select id="service" name="service" required>
+                <option value="">Choisissez un service</option>
+                <option>Vidéos publicitaires avec IA</option>
+                <option>Publicités parfums et cosmétiques</option>
+                <option>Contenus pour TikTok</option>
+                <option>Contenus Facebook et Instagram</option>
+                <option>Affiches et visuels publicitaires</option>
+                <option>Packs publicitaires pour entreprises</option>
+                <option>Créations personnalisées avec IA</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="type">Type de création <span class="req">*</span></label>
+              <select id="type" name="type" required>
+                <option value="">Choisissez un type</option>
+                <option>Vidéo</option>
+                <option>Affiche</option>
+                <option>Pack</option>
+              </select>
+            </div>
+          </div>
+          <div class="two-cols">
+            <div class="form-row">
+              <label for="duration">Durée de la vidéo (si applicable)</label>
+              <select id="duration" name="duration">
+                <option value="">Non applicable</option>
+                <option>10 secondes</option>
+                <option>20 secondes</option>
+                <option>Vidéo verticale TikTok / Reels</option>
+                <option>Autre (à préciser dans la description)</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="budget">Budget estimé (USD)</label>
+              <input type="text" id="budget" name="budget" placeholder="Ex : 10 USD">
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="description">Description détaillée du projet <span class="req">*</span></label>
+            <textarea id="description" name="description" required placeholder="Produit, public visé, message, style souhaité..."></textarea>
+          </div>
+          <div class="form-row">
+            <label for="reference">Lien vers un exemple (facultatif)</label>
+            <input type="url" id="reference" name="reference" placeholder="https://...">
+          </div>
+          <button type="submit" class="btn" style="width:100%;">Envoyer ma demande</button>
+          <div class="form-status" id="formStatus" role="status"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="alt" id="faq">
+      <div class="container" style="max-width: 800px;">
+        <h2>QUESTIONS FRÉQUENTES</h2>
+        <p class="lead">&nbsp;</p>
+
+        <details>
+          <summary>Quels types de vidéos créez-vous ?</summary>
+          <p>Nous créons des vidéos publicitaires avec IA, des présentations de produits, des publicités de parfums et de cosmétiques, des contenus verticaux pour TikTok, Reels et Facebook, ainsi que des affiches et visuels.</p>
+        </details>
+        <details>
+          <summary>Puis-je commander depuis un autre pays ?</summary>
+          <p>Oui. Indiquez votre pays dans le formulaire de commande. Les moyens de paiement disponibles vous seront communiqués après examen de votre demande.</p>
+        </details>
+        <details>
+          <summary>Quels sont les prix ?</summary>
+          <p>Les prix sont indicatifs en dollars américains (USD) et sont listés dans la section Tarifs. Le prix final est confirmé après examen de votre projet.</p>
+        </details>
+        <details>
+          <summary>Quels formats vidéo proposez-vous ?</summary>
+          <p>Nous proposons des formats horizontaux pour YouTube et Facebook, et des formats verticaux 9:16 pour TikTok, Instagram Reels et WhatsApp Status.</p>
+        </details>
+        <details>
+          <summary>Comment envoyer les détails de mon projet ?</summary>
+          <p>Remplissez le formulaire de la section Commander. Plus votre description est claire, plus le résultat sera précis.</p>
+        </details>
+        <details>
+          <summary>Quels moyens de paiement sont disponibles ?</summary>
+          <p>Les moyens de paiement sont confirmés au moment de la validation de votre commande. Aucun paiement n'est demandé sur ce site pour le moment.</p>
+        </details>
+        <details>
+          <summary>Quel est le délai de livraison ?</summary>
+          <p>Le délai est confirmé après validation de la commande, selon la complexité du projet.</p>
+        </details>
+        <details>
+          <summary>Puis-je demander une création personnalisée ?</summary>
+          <p>Oui. Choisissez « Créations personnalisées avec IA » dans le formulaire. Nous étudierons votre demande et établirons un devis.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container" style="max-width: 800px;">
+        <h2>CONTACTEZ-NOUS</h2>
+        <p class="lead">Pour toute question, proposition de collaboration ou demande d'information, contactez ALIXON AI STUDIO.</p>
+        <div class="contact-info" id="contactInfo"></div>
+        <div class="social">
+          <a href="#" class="is-empty" data-link="tiktok">TikTok</a>
+          <a href="#" class="is-empty" data-link="facebook">Facebook</a>
+          <a href="#" class="is-empty" data-link="instagram">Instagram</a>
+          <a href="#" class="is-empty" data-link="whatsapp">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONDITIONS ET INFORMATIONS LÉGALES -->
+    <section class="alt legal" id="legal">
+      <div class="container" style="max-width: 800px;">
+        <h2>INFORMATIONS LÉGALES</h2>
+        <p class="lead">Ces textes sont des modèles. Vérifiez-les et personnalisez-les avant publication. Ils ne constituent pas un conseil juridique.</p>
+        <details>
+          <summary>Conditions de service</summary>
+          <p>Décrivez ici les conditions générales : nature des services, obligations du client et de ALIXON AI STUDIO, validation des commandes.</p>
+        </details>
+        <details>
+          <summary>Politique de confidentialité</summary>
+          <p>Décrivez ici les données collectées par le formulaire (nom, e-mail, pays, description du projet), leur utilisation et leur durée de conservation.</p>
+        </details>
+        <details>
+          <summary>Politique de révision des créations</summary>
+          <p>Décrivez ici le nombre de révisions incluses dans chaque formule et la procédure de demande de modification.</p>
+        </details>
+        <details>
+          <summary>Conditions de remboursement</summary>
+          <p>Décrivez ici les conditions de remboursement, selon l'avancement du projet.</p>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIED DE PAGE -->
+  <footer>
+    <div class="container">
+      <div class="brand">ALIXON <span>AI STUDIO</span></div>
+      <p class="tagline">Votre vision, notre créativité, propulsée par l'intelligence artificielle.</p>
+      <nav>
+        <a href="#accueil">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Créations</a>
+        <a href="#contact">Contact</a>
+        <a href="#legal">Informations légales</a>
+      </nav>
+      <p class="copy">© <span id="year"></span> ALIXON AI STUDIO. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+    /* =====================================================
+       ALIXON AI STUDIO : vos informations à remplir
+       (laissez vide tant que vous n'avez pas la valeur)
+       ===================================================== */
+    const CONFIG = {
+      email: "",              // ex : "votre@email.com"
+      whatsappNumber: "",     // ex : "50912345678" (sans +, sans espaces)
+      social: {
+        tiktok: "",           // ex : "https://www.tiktok.com/@votrenom"
+        facebook: "",         // ex : "https://www.facebook.com/votrepage"
+        instagram: ""         // ex : "https://www.instagram.com/votrenom"
+      },
+      // Adresse de réception des formulaires (ex : Formspree, voir la note ci-dessous)
+      formEndpoint: ""        // ex : "https://formspree.io/f/xxxxxxxx"
+    };
+
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => document.querySelectorAll(s);
+
+    /* Menu mobile */
+    $("#menuBtn").addEventListener("click", () => {
+      const menu = $("#menu");
+      const open = menu.classList.toggle("open");
+      $("#menuBtn").setAttribute("aria-expanded", open);
+    });
+    $$("#menu a").forEach((a) => a.addEventListener("click", () => {
+      $("#menu").classList.remove("open");
+      $("#menuBtn").setAttribute("aria-expanded", "false");
+    }));
+
+    /* Boutons "Commander ce service" : pré-remplit le formulaire */
+    $$("[data-service]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        $("#service").value = btn.dataset.service;
+        document.getElementById("commander").scrollIntoView({ behavior: "smooth" });
+        $("#name").focus({ preventScroll: true });
+      });
+    });
+
+    /* Liens de contact et réseaux : désactivés tant qu'ils ne sont pas remplis */
+    function setupLink(el, url) {
+      if (url) {
+        el.href = url;
+        el.target = "_blank";
+        el.rel = "noopener";
+        el.classList.remove("is-empty");
+      } else {
+        el.addEventListener("click", (e) => e.preventDefault());
+      }
+    }
+    $$("[data-link]").forEach((el) => {
+      const key = el.dataset.link;
+      if (key === "whatsapp") {
+        setupLink(el, CONFIG.whatsappNumber ? `https://wa.me/${CONFIG.whatsappNumber}` : "");
+      } else {
+        setupLink(el, CONFIG.social[key]);
+      }
+    });
+
+    /* Coordonnées de contact (affichées seulement si remplies) */
+    const info = [];
+    if (CONFIG.email) info.push(`E-mail : <a href="mailto:${CONFIG.email}">${CONFIG.email}</a>`);
+    if (CONFIG.whatsappNumber) info.push(`WhatsApp : +${CONFIG.whatsappNumber}`);
+    $("#contactInfo").innerHTML = info.length
+      ? info.join("<br>")
+      : "Les coordonnées de contact seront ajoutées bientôt.";
+
+    /* Formulaire de commande */
+    $("#orderForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const status = $("#formStatus");
+      const form = e.target;
+
+      const show = (msg, type) => {
+        status.textContent = msg;
+        status.className = "form-status show " + type;
+      };
+
+      if (!CONFIG.formEndpoint) {
+        show("Le formulaire n'est pas encore connecté. Merci de revenir plus tard ou de nous contacter via les réseaux sociaux.", "error");
+        return;
+      }
+
+      show("Envoi en cours...", "ok");
+      try {
+        const response = await fetch(CONFIG.formEndpoint, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" }
+        });
+        if (response.ok) {
+          form.reset();
+          show("Merci ! Votre demande a été envoyée. Nous l'examinerons et vous contacterons pour confirmer le prix final.", "ok");
+        } else {
+          show("Une erreur est survenue. Votre demande n'a pas été envoyée. Veuillez réessayer.", "error");
+        }
+      } catch (err) {
+        show("Connexion impossible. Vérifiez votre Internet et réessayez.", "error");
+      }
+    });
+
+    $("#year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
