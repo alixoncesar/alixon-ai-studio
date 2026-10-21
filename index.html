@@ -621,6 +621,7 @@
         <a href="#contact">Contact</a>
         <a href="#legal">Informations légales</a>
       </nav>
+      <p id="visites" style="font-size:0.95rem;margin-bottom:10px;"></p>
       <p class="copy">© <span id="year"></span> ALIXON AI STUDIO. Tous droits réservés.</p>
     </div>
   </footer>
@@ -730,5 +731,19 @@
     $("#year").textContent = new Date().getFullYear();
   </script>
   <script data-goatcounter="https://alixonstudio1.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      var tries = 0;
+      var timer = setInterval(function () {
+        tries++;
+        if (window.goatcounter && window.goatcounter.visit_count) {
+          clearInterval(timer);
+          window.goatcounter.visit_count({ append: "#visites", type: "html", no_branding: true });
+        } else if (tries > 20) {
+          clearInterval(timer);
+        }
+      }, 500);
+    });
+  </script>
 </body>
 </html>
