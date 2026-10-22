@@ -419,6 +419,52 @@
       </div>
     </section>
 
+    <!-- MINI-COURS IA -->
+    <section id="mini-cours">
+      <div class="container">
+        <h2>MINI-COURS SUR L'IA</h2>
+        <p class="lead">Trois leçons courtes pour bien commencer à créer avec l'intelligence artificielle.</p>
+        <div class="cards">
+          <article class="card">
+            <h3>Leçon 1 : Qu'est-ce que l'IA ?</h3>
+            <p>L'IA est un outil qui produit des images, des textes ou des vidéos à partir de ce que vous lui demandez. Vous lui donnez une consigne, et elle crée une proposition. Vous décidez ensuite de ce qui vous convient.</p>
+          </article>
+          <article class="card">
+            <h3>Leçon 2 : Bien écrire sa demande</h3>
+            <p>Une bonne consigne précise le sujet, le style, la lumière, le format (horizontal, vertical) et ce qu'il faut éviter (par exemple : « aucun logo »). Plus la consigne est claire, plus le résultat l'est aussi.</p>
+          </article>
+          <article class="card">
+            <h3>Leçon 3 : Utiliser une création IA honnêtement</h3>
+            <p>Indiquez toujours qu'une image ou une vidéo est une « création IA ». Ne présentez pas une personne générée comme un vrai client, et vérifiez que votre création ne reprend pas une marque ou une œuvre existante.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTIMATION AFFICHE -->
+    <section class="alt" id="estimation">
+      <div class="container">
+        <h2>ESTIMATION POUR VOTRE AFFICHE</h2>
+        <p class="lead">Écrivez le nom de votre produit et votre offre. Nous vous proposons trois exemples de texte pour votre affiche. C'est gratuit et sans engagement.</p>
+        <form class="form-box" id="posterForm">
+          <div class="form-row">
+            <label for="pProduit">Nom du produit <span class="req">*</span></label>
+            <input type="text" id="pProduit" placeholder="Ex : Crème hydratante">
+          </div>
+          <div class="form-row">
+            <label for="pOffre">Votre offre (ex : 10 % de réduction)</label>
+            <input type="text" id="pOffre">
+          </div>
+          <div class="form-row">
+            <label for="pContact">Votre numéro WhatsApp ou e-mail</label>
+            <input type="text" id="pContact">
+          </div>
+          <button type="button" class="btn" id="posterBtn" style="width:100%;">Voir les exemples de texte</button>
+        </form>
+        <div id="posterResults" style="max-width:680px;margin:24px auto 0;"></div>
+      </div>
+    </section>
+
     <!-- TÉMOIGNAGES -->
     <section class="alt" id="temoignages">
       <div class="container">
@@ -822,6 +868,57 @@
       }
     });
 
+    /* Estimation d'affiche : propose 3 textes à partir de ce que le client écrit */
+    $("#posterForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var produit = $("#pProduit").value.trim();
+      var offre = $("#pOffre").value.trim();
+      var contact = $("#pContact").value.trim();
+      var box = $("#posterResults");
+      box.innerHTML = "";
+
+      if (!produit) {
+        var warn = document.createElement("p");
+        warn.className = "form-status show error";
+        warn.textContent = "Écrivez d'abord le nom de votre produit, puis appuyez encore sur le bouton.";
+        box.appendChild(warn);
+        $("#pProduit").focus();
+        return;
+      }
+
+      var phrases = offre
+        ? [
+            produit + " : " + offre + ". Contactez-nous pour en savoir plus.",
+            "Découvrez " + produit + " et profitez de " + offre + ".",
+            offre + " sur " + produit + " ! Demandez votre devis dès aujourd'hui."
+          ]
+        : [
+            "Découvrez " + produit + ". Contactez-nous pour en savoir plus.",
+            produit + " : la qualité que vous méritez.",
+            "Faites confiance à " + produit + ". Demandez votre devis dès aujourd'hui."
+          ];
+
+      phrases.forEach(function (txt, i) {
+        var card = document.createElement("article");
+        card.className = "card";
+        card.style.marginBottom = "14px";
+        var h = document.createElement("h3");
+        h.textContent = "Exemple " + (i + 1);
+        var p = document.createElement("p");
+        p.textContent = txt + (contact ? " Contact : " + contact : "");
+        card.appendChild(h);
+        card.appendChild(p);
+        box.appendChild(card);
+      });
+
+      var note = document.createElement("p");
+      note.className = "note";
+      note.style.textAlign = "center";
+      note.textContent = "Ce sont des exemples de départ. Le texte final est confirmé après discussion de votre projet.";
+      box.appendChild(note);
+      box.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
     /* Boutons Partager et Commenter sous chaque création */
     document.querySelectorAll("#portfolio .slot").forEach(function (slot) {
       var titleEl = slot.querySelector("h3");
@@ -867,7 +964,73 @@
 
     $("#year").textContent = new Date().getFullYear();
   </script>
+  <script src="//code.tidio.co/vomoovugzzklftbmzzqqx2wuu2zxq8nh.js" async></script>
   <script data-goatcounter="https://alixonstudio1.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script>
+    /* Estimateur d'affiche : script indépendant */
+    (function () {
+      function run() {
+        var btn = document.getElementById("posterBtn");
+        var box = document.getElementById("posterResults");
+        if (!btn || !box) return;
+        btn.addEventListener("click", function () {
+          var produit = (document.getElementById("pProduit").value || "").trim();
+          if (produit) produit = produit.charAt(0).toUpperCase() + produit.slice(1);
+          var offre = (document.getElementById("pOffre").value || "").trim();
+          var contact = (document.getElementById("pContact").value || "").trim();
+          box.innerHTML = "";
+
+          if (!produit) {
+            box.innerHTML = '<p class="form-status show error">Écrivez d\'abord le nom de votre produit, puis appuyez encore sur le bouton.</p>';
+            document.getElementById("pProduit").focus();
+            return;
+          }
+
+          if (offre && /^[\d\s.,%]+$/.test(offre)) {
+            box.innerHTML = '<p class="form-status show error">Astuce : ekri ofri a konplè, pa egzanp « 11 % de réduction » oswa « 11 USD », pou tèks yo vin pi bon.</p>';
+          }
+
+          var phrases = offre
+            ? [
+                produit + " : " + offre + ". Contactez-nous pour en savoir plus.",
+                "Découvrez " + produit + " et profitez de " + offre + ".",
+                offre + " sur " + produit + " ! Demandez votre devis dès aujourd'hui."
+              ]
+            : [
+                "Découvrez " + produit + ". Contactez-nous pour en savoir plus.",
+                produit + " : la qualité que vous méritez.",
+                "Faites confiance à " + produit + ". Demandez votre devis dès aujourd'hui."
+              ];
+
+          phrases.forEach(function (txt, i) {
+            var card = document.createElement("article");
+            card.className = "card";
+            card.style.marginBottom = "14px";
+            var h = document.createElement("h3");
+            h.textContent = "Exemple " + (i + 1);
+            var p = document.createElement("p");
+            p.textContent = txt + (contact ? " Contact : " + contact : "");
+            card.appendChild(h);
+            card.appendChild(p);
+            box.appendChild(card);
+          });
+
+          var note = document.createElement("p");
+          note.className = "note";
+          note.style.textAlign = "center";
+          note.textContent = "Ce sont des exemples de départ. Le texte final est confirmé après discussion de votre projet.";
+          box.appendChild(note);
+          box.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", run);
+      } else {
+        run();
+      }
+    })();
+  </script>
+
   <script>
     window.addEventListener("load", function () {
       var tries = 0;
