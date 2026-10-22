@@ -202,6 +202,14 @@
       nav.menu { justify-content: flex-end; }
       section { padding: 90px 0; }
     }
+    .actions { display: flex; gap: 10px; padding: 0 16px 16px; flex-wrap: wrap; }
+    .act-btn {
+      flex: 1; min-width: 120px; text-align: center; cursor: pointer;
+      padding: 10px 12px; border-radius: 50px; border: 1.5px solid var(--blue-500);
+      background: var(--white); color: var(--blue-700); font-weight: 600; font-size: 0.9rem;
+      font-family: inherit; text-decoration: none; display: inline-block;
+    }
+    .act-btn:hover { background: var(--blue-500); color: var(--white); }
     @media (max-width: 560px) {
       .two-cols { grid-template-columns: 1fr; }
     }
@@ -408,6 +416,40 @@
             <div class="info"><h3>Réseaux sociaux</h3><p>Vidéo verticale pour TikTok ou Reels. Création IA.</p></div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- TÉMOIGNAGES -->
+    <section class="alt" id="temoignages">
+      <div class="container">
+        <h2>TÉMOIGNAGES</h2>
+        <p class="lead">Vous avez travaillé avec nous ? Partagez votre expérience avec les futurs clients.</p>
+        <div class="cards" id="testimonialsList"></div>
+        <div style="text-align:center;margin-top:28px;">
+          <form class="form-box" id="testimonyForm" style="text-align:left;">
+            <input type="hidden" name="_subject" value="Nouveau témoignage - ALIXON AI STUDIO">
+            <input type="hidden" name="type" value="Témoignage">
+            <div class="form-row">
+              <label for="tName">Votre nom (ou prénom) <span class="req">*</span></label>
+              <input type="text" id="tName" name="name" required>
+            </div>
+            <div class="form-row">
+              <label for="tCountry">Pays</label>
+              <input type="text" id="tCountry" name="country">
+            </div>
+            <div class="form-row">
+              <label for="tText">Votre témoignage <span class="req">*</span></label>
+              <textarea id="tText" name="temoignage" required maxlength="400" placeholder="Décrivez votre expérience avec ALIXON AI STUDIO (400 caractères maximum)"></textarea>
+            </div>
+            <div class="form-row" style="display:flex;gap:10px;align-items:flex-start;">
+              <input type="checkbox" id="tConsent" name="consent" value="oui" required style="margin-top:4px;width:18px;height:18px;">
+              <label for="tConsent" style="font-weight:400;">J'accepte que mon témoignage soit publié sur le site.</label>
+            </div>
+            <button type="submit" class="btn" style="width:100%;">Envoyer mon témoignage</button>
+            <div class="form-status" id="testyStatus" role="status"></div>
+          </form>
+        </div>
+        <p class="note" style="text-align:center;margin-top:14px;">Seuls les témoignages réels, publiés avec l'accord de leurs auteurs, apparaissent ici.</p>
       </div>
     </section>
 
@@ -640,7 +682,11 @@
         instagram: ""         // ex : "https://www.instagram.com/votrenom"
       },
       // Adresse de réception des formulaires (ex : Formspree, voir la note ci-dessous)
-      formEndpoint: "https://formspree.io/f/mdearagk"
+      formEndpoint: "https://formspree.io/f/mdearagk",
+
+      // Témoignages RÉELS seulement, avec l'accord de la personne.
+      // Exemple : { name: "Prénom Nom", text: "Texte du témoignage." }
+      testimonials: []
     };
 
     const $ = (s) => document.querySelector(s);
@@ -726,6 +772,97 @@
       } catch (err) {
         show("Connexion impossible. Vérifiez votre Internet et réessayez.", "error");
       }
+    });
+
+    /* Témoignages : affichés seulement s'ils sont dans CONFIG.testimonials */
+    var list = document.getElementById("testimonialsList");
+    if (CONFIG.testimonials.length === 0) {
+      list.parentElement.querySelector(".lead").textContent = "Les témoignages de nos clients apparaîtront ici très bientôt.";
+    }
+    CONFIG.testimonials.forEach(function (t) {
+      var card = document.createElement("article");
+      card.className = "card";
+      var p = document.createElement("p");
+      p.textContent = "« " + t.text + " »";
+      var who = document.createElement("strong");
+      who.textContent = "— " + t.name;
+      card.appendChild(p);
+      card.appendChild(who);
+      list.appendChild(card);
+    });
+
+    /* Formulaire de témoignage : envoyé via Formspree, publié seulement après accord */
+    $("#testimonyForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      var form = e.target;
+      var status = $("#testyStatus");
+      var show = function (msg, type) {
+        status.textContent = msg;
+        status.className = "form-status show " + type;
+      };
+      if (!CONFIG.formEndpoint) {
+        show("Le formulaire n'est pas encore connecté. Merci de revenir plus tard.", "error");
+        return;
+      }
+      show("Envoi en cours...", "ok");
+      try {
+        var response = await fetch(CONFIG.formEndpoint, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" }
+        });
+        if (response.ok) {
+          form.reset();
+          show("Merci pour votre témoignage ! Il sera publié après vérification.", "ok");
+        } else {
+          show("Une erreur est survenue. Veuillez réessayer.", "error");
+        }
+      } catch (err) {
+        show("Connexion impossible. Vérifiez votre Internet et réessayez.", "error");
+      }
+    });
+
+    /* Boutons Partager et Commenter sous chaque création */
+    document.querySelectorAll("#portfolio .slot").forEach(function (slot) {
+      var titleEl = slot.querySelector("h3");
+      var title = titleEl ? titleEl.textContent : "Création ALIXON AI STUDIO";
+      var pageUrl = location.href.split("#")[0];
+
+      var bar = document.createElement("div");
+      bar.className = "actions";
+
+      var share = document.createElement("button");
+      share.type = "button";
+      share.className = "act-btn";
+      share.textContent = "↗ Partager";
+      share.addEventListener("click", function () {
+        var data = {
+          title: "ALIXON AI STUDIO - " + title,
+          text: "Découvrez « " + title + " » sur ALIXON AI STUDIO",
+          url: pageUrl
+        };
+        if (navigator.share) {
+          navigator.share(data).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(pageUrl).then(function () {
+            share.textContent = "✓ Lien copié";
+          });
+        }
+      });
+
+      var comment = document.createElement("a");
+      comment.className = "act-btn";
+      comment.textContent = "💬 Commenter";
+      comment.target = "_blank";
+      comment.rel = "noopener";
+      comment.href = CONFIG.whatsappNumber
+        ? "https://wa.me/" + CONFIG.whatsappNumber + "?text=" + encodeURIComponent("Bonjour, je suis intéressé(e) par : " + title)
+        : "#";
+      if (!CONFIG.whatsappNumber) comment.classList.add("is-empty");
+
+      bar.appendChild(share);
+      bar.appendChild(comment);
+      slot.appendChild(bar);
     });
 
     $("#year").textContent = new Date().getFullYear();
