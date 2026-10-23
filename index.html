@@ -7,15 +7,15 @@
   <meta name="description" content="ALIXON AI STUDIO crée des vidéos publicitaires, des publicités pour parfums et cosmétiques, des contenus TikTok, Facebook, Instagram et des affiches avec l'intelligence artificielle.">
   <style>
     :root {
-      --blue-900: #071a3a;
-      --blue-700: #0f3d8a;
-      --blue-500: #1d6bd6;
-      --blue-100: #e9f2ff;
+      --blue-900: #0a0a0a;
+      --blue-700: #1c1c1c;
+      --blue-500: #b8962e;
+      --blue-100: #faf6e9;
       --white: #ffffff;
-      --text: #1b2536;
-      --muted: #4b5870;
+      --text: #1a1a1a;
+      --muted: #555555;
       --radius: 14px;
-      --shadow: 0 8px 24px rgba(7, 26, 58, 0.10);
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; scroll-padding-top: 72px; }
@@ -61,7 +61,7 @@
     }
     .nav-bar { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; }
     .brand { color: var(--white); text-decoration: none; font-weight: 800; letter-spacing: 1px; }
-    .brand span { color: #9cc7ff; }
+    .brand span { color: #e6c76b; }
     .menu-btn {
       background: none; border: none; color: var(--white);
       font-size: 1.8rem; cursor: pointer; line-height: 1;
@@ -82,7 +82,7 @@
       padding: 130px 20px 80px;
     }
     .hero h1 { color: var(--white); font-size: clamp(1.9rem, 6vw, 3rem); margin-bottom: 14px; }
-    .hero .slogan { font-size: clamp(1rem, 2.6vw, 1.2rem); color: #d6e6ff; max-width: 640px; margin: 0 auto 28px; }
+    .hero .slogan { font-size: clamp(1rem, 2.6vw, 1.2rem); color: #f3ead0; max-width: 640px; margin: 0 auto 28px; }
     .hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 
     /* Cartes services */
@@ -186,12 +186,12 @@
     .legal details p { font-size: 0.93rem; }
 
     /* Pied de page */
-    footer { background: var(--blue-900); color: #d6e6ff; padding: 36px 0 24px; text-align: center; }
+    footer { background: var(--blue-900); color: #f3ead0; padding: 36px 0 24px; text-align: center; }
     footer .brand { font-size: 1.3rem; }
     footer .tagline { font-style: italic; margin: 8px 0 16px; }
     footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 16px; }
-    footer nav a { color: #d6e6ff; text-decoration: none; font-size: 0.92rem; }
-    footer nav a:hover { color: #9cc7ff; }
+    footer nav a { color: #f3ead0; text-decoration: none; font-size: 0.92rem; }
+    footer nav a:hover { color: #e6c76b; }
     footer .copy { font-size: 0.85rem; opacity: 0.85; }
 
     @media (min-width: 800px) {
@@ -223,7 +223,7 @@
   <!-- EN-TÊTE -->
   <header class="site-header">
     <div class="nav-bar">
-      <a href="#accueil" class="brand">ALIXON <span>AI STUDIO</span></a>
+      <a href="#accueil" class="brand"><img src="logo.png" alt="ALIXON AI STUDIO" style="height:46px;width:auto;display:block;background:#ffffff;border-radius:10px;padding:3px 6px;"></a>
       <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false">&#9776;</button>
       <nav class="menu" id="menu">
         <a href="#services">Services</a>
@@ -241,7 +241,8 @@
     <!-- ACCUEIL -->
     <section class="hero" id="accueil">
       <div class="container">
-        <p style="font-size:1.1rem;letter-spacing:2px;color:#9cc7ff;margin-bottom:8px;">Bienvenue sur</p>
+        <img src="logo.png" alt="Logo ALIXON AI STUDIO" style="width:min(240px,70vw);height:auto;display:block;margin:0 auto 18px;background:#ffffff;border-radius:22px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,0.35);">
+        <p style="font-size:1.1rem;letter-spacing:2px;color:#e6c76b;margin-bottom:8px;">Bienvenue sur</p>
         <h1>ALIXON AI STUDIO</h1>
         <p class="slogan">Votre vision, notre créativité, propulsée par l'intelligence artificielle.</p>
         <div class="hero-buttons">
@@ -392,11 +393,11 @@
         <p class="lead">Découvrez quelques-unes de nos créations : vidéos publicitaires, parfums, cosmétiques, affiches et contenus pour les réseaux sociaux.</p>
         <div class="portfolio">
           <div class="slot">
-            <video src="pub3.mp4" poster="petiteentreprise1.jpg" controls playsinline preload="metadata" style="width:100%;height:auto;display:block;background:#071a3a;" aria-label="Publicité vidéo ALIXON AI STUDIO"></video>
+            <video src="pub3.mp4" poster="petiteentreprise1.jpg" controls playsinline preload="metadata" style="width:100%;height:auto;display:block;background:#0a0a0a;" aria-label="Publicité vidéo ALIXON AI STUDIO"></video>
             <div class="info"><h3>Vidéos publicitaires</h3><p>Publicité courte pour une petite entreprise. Création IA.</p></div>
           </div>
           <div class="slot">
-            <video src="pub2.mp4" controls playsinline preload="metadata" style="width:100%;height:auto;display:block;background:#071a3a;" aria-label="Deuxième publicité vidéo ALIXON AI STUDIO"></video>
+            <video src="pub2.mp4" controls playsinline preload="metadata" style="width:100%;height:auto;display:block;background:#0a0a0a;" aria-label="Deuxième publicité vidéo ALIXON AI STUDIO"></video>
             <div class="info"><h3>Vidéos publicitaires</h3><p>Création vidéo IA pour votre marque.</p></div>
           </div>
           <div class="slot">
@@ -416,6 +417,102 @@
             <div class="info"><h3>Réseaux sociaux</h3><p>Vidéo verticale pour TikTok ou Reels. Création IA.</p></div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- BUSINESS / BOUTIQUE -->
+    <section class="alt" id="business">
+      <div class="container">
+        <h2>BUSINESS EN LIGNE</h2>
+        <p class="lead">Choisissez vos produits, ajoutez-les au panier, puis envoyez votre commande. Le paiement se fait après confirmation, par MonCash ou Natcash.</p>
+
+        <div class="cards" id="productGrid"></div>
+        <p id="productEmpty" class="note" style="text-align:center;margin-top:16px;">Les produits seront ajoutés très bientôt.</p>
+
+        <div class="form-box" id="cartBox" style="margin-top:32px;">
+          <h3 style="margin-bottom:12px;">Votre panier</h3>
+          <div id="cartLines"><p class="note">Votre panier est vide.</p></div>
+          <p style="text-align:right;font-weight:700;margin-top:12px;">Total estimé : <span id="cartTotal">0</span> USD</p>
+
+          <form id="cartForm" style="margin-top:18px;">
+            <div class="form-row">
+              <label for="cName">Votre nom <span class="req">*</span></label>
+              <input type="text" id="cName" name="name" required>
+            </div>
+            <div class="form-row">
+              <label for="cEmail">Adresse e-mail <span class="req">*</span></label>
+              <input type="email" id="cEmail" name="email" required>
+            </div>
+            <div class="form-row">
+              <label for="cPhone">Téléphone / WhatsApp <span class="req">*</span></label>
+              <input type="text" id="cPhone" name="phone" required>
+            </div>
+            <div class="form-row">
+              <label for="cNote">Remarque (facultatif)</label>
+              <textarea id="cNote" name="note" placeholder="Adresse de livraison, précisions..."></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="Nouvelle commande - ALIXON AI STUDIO Business">
+            <input type="hidden" name="type" value="Commande Business">
+            <input type="hidden" name="commande" id="cOrder" value="">
+            <button type="submit" class="btn" style="width:100%;">Envoyer ma commande</button>
+            <div class="form-status" id="cartStatus" role="status"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSCRIPTION VENDEUR -->
+    <section id="inscription-vendeur">
+      <div class="container">
+        <h2>INSCRIPTION VENDEUR</h2>
+        <p class="lead">Vous voulez vendre vos produits sur ALIXON AI STUDIO ? Remplissez ce formulaire. Abonnement : 5 USD par mois, payé par MonCash ou Natcash après validation de votre demande.</p>
+        <form class="form-box" id="vendorForm">
+          <input type="hidden" name="_subject" value="Nouvelle inscription vendeur - ALIXON AI STUDIO">
+          <input type="hidden" name="type" value="Inscription vendeur">
+          <div class="two-cols">
+            <div class="form-row">
+              <label for="vName">Votre nom <span class="req">*</span></label>
+              <input type="text" id="vName" name="name" required>
+            </div>
+            <div class="form-row">
+              <label for="vShop">Nom de votre boutique <span class="req">*</span></label>
+              <input type="text" id="vShop" name="boutique" required>
+            </div>
+          </div>
+          <div class="two-cols">
+            <div class="form-row">
+              <label for="vPhone">WhatsApp (avec indicatif) <span class="req">*</span></label>
+              <input type="text" id="vPhone" name="whatsapp" required placeholder="Ex : 50942895897">
+            </div>
+            <div class="form-row">
+              <label for="vEmail">Adresse e-mail <span class="req">*</span></label>
+              <input type="email" id="vEmail" name="email" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="vCountry">Pays <span class="req">*</span></label>
+            <select id="vCountry" name="pays" required></select>
+          </div>
+          <div class="form-row">
+            <label for="vProducts">Vos produits (description courte) <span class="req">*</span></label>
+            <textarea id="vProducts" name="produits" required placeholder="Ex : crèmes naturelles, savons, bijoux..."></textarea>
+          </div>
+          <div class="form-row">
+            <label for="vPhotos">Lien vers vos photos de produits <span class="req">*</span></label>
+            <input type="text" id="vPhotos" name="photos" required placeholder="Lien Google Drive, Google Photos, etc.">
+            <p class="note" style="margin-top:6px;">Mettez vos photos dans un dossier partagé (Google Drive ou Google Photos), puis collez le lien ici. Vous pouvez aussi les envoyer sur WhatsApp après l'inscription.</p>
+          </div>
+          <div class="form-row">
+            <label for="vSocial">Lien de vos réseaux sociaux (facultatif)</label>
+            <input type="text" id="vSocial" name="reseaux" placeholder="https://...">
+          </div>
+          <div class="form-row" style="display:flex;gap:10px;align-items:flex-start;">
+            <input type="checkbox" id="vConsent" name="consent" value="oui" required style="margin-top:4px;width:18px;height:18px;">
+            <label for="vConsent" style="font-weight:400;">Je comprends que mon inscription sera validée avant publication, et que l'abonnement de 5 USD par mois est à payer par MonCash ou Natcash.</label>
+          </div>
+          <button type="submit" class="btn" style="width:100%;">Envoyer mon inscription</button>
+          <div class="form-status" id="vendorStatus" role="status"></div>
+        </form>
       </div>
     </section>
 
@@ -481,7 +578,7 @@
             </div>
             <div class="form-row">
               <label for="tCountry">Pays</label>
-              <input type="text" id="tCountry" name="country">
+              <select id="tCountry" name="country"></select>
             </div>
             <div class="form-row">
               <label for="tText">Votre témoignage <span class="req">*</span></label>
@@ -553,7 +650,7 @@
           <div class="two-cols">
             <div class="form-row">
               <label for="country">Pays <span class="req">*</span></label>
-              <input type="text" id="country" name="country" required>
+              <select id="country" name="country" required></select>
             </div>
             <div class="form-row">
               <label for="company">Nom de l'entreprise</label>
@@ -700,7 +797,7 @@
   <!-- PIED DE PAGE -->
   <footer>
     <div class="container">
-      <div class="brand">ALIXON <span>AI STUDIO</span></div>
+      <div class="brand"><img src="logo.png" alt="ALIXON AI STUDIO" style="height:56px;width:auto;display:inline-block;background:#ffffff;border-radius:10px;padding:4px 8px;"></div>
       <p class="tagline">Votre vision, notre créativité, propulsée par l'intelligence artificielle.</p>
       <nav>
         <a href="#accueil">Accueil</a>
@@ -964,6 +1061,231 @@
 
     $("#year").textContent = new Date().getFullYear();
   </script>
+  <script>
+    /* BUSINESS : boutique (script indépendant) */
+    (function () {
+      /* Ajoutez vos produits ici. Exemple :
+         { id: "p1", name: "Crème hydratante", price: 10, image: "produit1.jpg" }
+         image est facultatif. Prix en USD. */
+      var PRODUCTS = [];
+      var FORM_ENDPOINT = "https://formspree.io/f/mdearagk";
+      var cart = {};
+
+      function $(id) { return document.getElementById(id); }
+
+      function renderProducts() {
+        var grid = $("productGrid");
+        grid.innerHTML = "";
+        $("productEmpty").style.display = PRODUCTS.length ? "none" : "block";
+        PRODUCTS.forEach(function (p) {
+          var card = document.createElement("article");
+          card.className = "card";
+          if (p.image) {
+            var img = document.createElement("img");
+            img.src = p.image;
+            img.alt = p.name;
+            img.style.cssText = "width:100%;height:auto;border-radius:10px;margin-bottom:12px;";
+            card.appendChild(img);
+          }
+          var h = document.createElement("h3");
+          h.textContent = p.name;
+          var pr = document.createElement("div");
+          pr.className = "price";
+          pr.textContent = p.price + " USD";
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "btn";
+          btn.textContent = "Ajouter au panier";
+          btn.addEventListener("click", function () {
+            cart[p.id] = (cart[p.id] || 0) + 1;
+            renderCart();
+          });
+          card.appendChild(h);
+          card.appendChild(pr);
+          card.appendChild(btn);
+          grid.appendChild(card);
+        });
+      }
+
+      function renderCart() {
+        var lines = $("cartLines");
+        lines.innerHTML = "";
+        var total = 0, summary = [];
+        PRODUCTS.forEach(function (p) {
+          var qty = cart[p.id] || 0;
+          if (!qty) return;
+          total += qty * p.price;
+          summary.push(qty + " x " + p.name + " (" + p.price + " USD)");
+
+          var row = document.createElement("div");
+          row.style.cssText = "display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #e3eaf5;";
+          var label = document.createElement("span");
+          label.textContent = p.name + " : " + qty + " x " + p.price + " USD";
+          var minus = document.createElement("button");
+          minus.type = "button";
+          minus.className = "act-btn";
+          minus.textContent = "−";
+          minus.addEventListener("click", function () {
+            cart[p.id] = Math.max(0, (cart[p.id] || 0) - 1);
+            renderCart();
+          });
+          row.appendChild(label);
+          row.appendChild(minus);
+          lines.appendChild(row);
+        });
+        if (!summary.length) {
+          lines.innerHTML = '<p class="note">Votre panier est vide.</p>';
+        }
+        $("cartTotal").textContent = total;
+        $("cOrder").value = summary.join(" | ") + " | Total : " + total + " USD";
+      }
+
+      $("cartForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        var status = $("cartStatus");
+        var show = function (msg, type) {
+          status.textContent = msg;
+          status.className = "form-status show " + type;
+        };
+        if (!$("cOrder").value || $("cOrder").value.indexOf("Total : 0 USD") === 0) {
+          show("Ajoutez d'abord au moins un produit à votre panier.", "error");
+          return;
+        }
+        show("Envoi en cours...", "ok");
+        try {
+          var response = await fetch(FORM_ENDPOINT, {
+            method: "POST",
+            body: new FormData(e.target),
+            headers: { Accept: "application/json" }
+          });
+          if (response.ok) {
+            e.target.reset();
+            cart = {};
+            renderCart();
+            show("Merci ! Votre commande a été envoyée. Nous vous contacterons pour confirmer le paiement (MonCash ou Natcash).", "ok");
+          } else {
+            show("Une erreur est survenue. Votre commande n'a pas été envoyée.", "error");
+          }
+        } catch (err) {
+          show("Connexion impossible. Vérifiez votre Internet et réessayez.", "error");
+        }
+      });
+
+      renderProducts();
+      renderCart();
+    })();
+  </script>
+
+  <script>
+    /* Liste des pays pour les formulaires */
+    (function () {
+      var PAYS = [
+        "Afghanistan","Afrique du Sud","Albanie","Algérie","Allemagne","Andorre","Angola","Antigua-et-Barbuda",
+        "Arabie saoudite","Argentine","Arménie","Australie","Autriche","Azerbaïdjan","Bahamas","Bahreïn",
+        "Bangladesh","Barbade","Belgique","Belize","Bénin","Bhoutan","Biélorussie","Birmanie (Myanmar)",
+        "Bolivie","Bosnie-Herzégovine","Botswana","Brésil","Brunei","Bulgarie","Burkina Faso","Burundi",
+        "Cambodge","Cameroun","Canada","Cap-Vert","Chili","Chine","Chypre","Colombie","Comores","Congo",
+        "Congo (RDC)","Corée du Nord","Corée du Sud","Costa Rica","Côte d'Ivoire","Croatie","Cuba","Danemark",
+        "Djibouti","Dominique","Égypte","Émirats arabes unis","Équateur","Érythrée","Espagne","Estonie",
+        "Eswatini","États-Unis","Éthiopie","Fidji","Finlande","France","Gabon","Gambie","Géorgie","Ghana",
+        "Grèce","Grenade","Guatemala","Guinée","Guinée-Bissau","Guinée équatoriale","Guyana","Haïti",
+        "Honduras","Hongrie","Îles Marshall","Inde","Indonésie","Irak","Iran","Irlande","Islande","Israël",
+        "Italie","Jamaïque","Japon","Jordanie","Kazakhstan","Kenya","Kirghizistan","Kiribati","Koweït",
+        "Laos","Lesotho","Lettonie","Liban","Liberia","Libye","Liechtenstein","Lituanie","Luxembourg",
+        "Macédoine du Nord","Madagascar","Malaisie","Malawi","Maldives","Mali","Malte","Maroc","Maurice",
+        "Mauritanie","Mexique","Micronésie","Moldavie","Monaco","Mongolie","Monténégro","Mozambique",
+        "Namibie","Nauru","Népal","Nicaragua","Niger","Nigeria","Norvège","Nouvelle-Zélande","Oman",
+        "Ouganda","Ouzbékistan","Pakistan","Palaos","Panama","Papouasie-Nouvelle-Guinée","Paraguay",
+        "Pays-Bas","Pérou","Philippines","Pologne","Portugal","Qatar","République centrafricaine",
+        "République dominicaine","République tchèque","Roumanie","Royaume-Uni","Russie","Rwanda",
+        "Saint-Christophe-et-Niévès","Sainte-Lucie","Saint-Marin","Saint-Vincent-et-les-Grenadines",
+        "Salomon","Salvador","Samoa","São Tomé-et-Principe","Sénégal","Serbie","Seychelles","Sierra Leone",
+        "Singapour","Slovaquie","Slovénie","Somalie","Soudan","Soudan du Sud","Sri Lanka","Suède","Suisse",
+        "Suriname","Syrie","Tadjikistan","Tanzanie","Tchad","Thaïlande","Timor oriental","Togo","Tonga",
+        "Trinité-et-Tobago","Tunisie","Turkménistan","Turquie","Tuvalu","Ukraine","Uruguay","Vanuatu",
+        "Vatican","Venezuela","Viêt Nam","Yémen","Zambie","Zimbabwe"
+      ];
+      var ids = ["country", "tCountry", "vCountry"];
+      ids.forEach(function (id) {
+        var sel = document.getElementById(id);
+        if (!sel) return;
+        var first = document.createElement("option");
+        first.value = "";
+        first.textContent = "Choisissez votre pays";
+        sel.appendChild(first);
+        PAYS.forEach(function (name) {
+          var o = document.createElement("option");
+          o.value = name;
+          o.textContent = name;
+          sel.appendChild(o);
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    /* Inscription vendeur : envoi via Formspree */
+    (function () {
+      var form = document.getElementById("vendorForm");
+      if (!form) return;
+      var FORM_ENDPOINT = "https://formspree.io/f/mdearagk";
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        var status = document.getElementById("vendorStatus");
+        status.textContent = "Envoi en cours...";
+        status.className = "form-status show ok";
+        try {
+          var response = await fetch(FORM_ENDPOINT, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" }
+          });
+          if (response.ok) {
+            form.reset();
+            status.textContent = "Merci ! Votre inscription a été envoyée. Nous la vérifierons et vous contacterons sur WhatsApp.";
+            status.className = "form-status show ok";
+          } else {
+            status.textContent = "Une erreur est survenue. Veuillez réessayer.";
+            status.className = "form-status show error";
+          }
+        } catch (err) {
+          status.textContent = "Connexion impossible. Vérifiez votre Internet et réessayez.";
+          status.className = "form-status show error";
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    /* Équivalent en gourdes (HTG) à côté de chaque prix en USD.
+       Modifiez TAUX si le taux change. */
+    (function () {
+      var TAUX = 131;
+      var re = /(\d+(?:[.,]\d+)?)\s?USD/g;
+      var zone = document.getElementById("tarifs");
+      if (!zone) return;
+      var walker = document.createTreeWalker(zone, NodeFilter.SHOW_TEXT, {
+        acceptNode: function (node) {
+          var p = node.parentNode;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          var tag = p.nodeName;
+          if (tag === "SCRIPT" || tag === "STYLE" || tag === "TEXTAREA" || tag === "INPUT") return NodeFilter.FILTER_REJECT;
+          return re.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+        }
+      });
+      var nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(function (node) {
+        re.lastIndex = 0;
+        node.nodeValue = node.nodeValue.replace(re, function (m, n) {
+          var value = parseFloat(n.replace(",", "."));
+          var htg = Math.round(value * TAUX);
+          return m + " (≈ " + htg.toLocaleString("fr-FR") + " HTG)";
+        });
+      });
+    })();
+  </script>
+
   <script src="//code.tidio.co/vomoovugzzklftbmzzqqx2wuu2zxq8nh.js" async></script>
   <script data-goatcounter="https://alixonstudio1.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   <script>
