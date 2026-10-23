@@ -466,6 +466,15 @@
       <div class="container">
         <h2>INSCRIPTION VENDEUR</h2>
         <p class="lead">Vous voulez vendre vos produits sur ALIXON AI STUDIO ? Remplissez ce formulaire. Abonnement : 5 USD par mois, payé par MonCash ou Natcash après validation de votre demande.</p>
+        <div class="form-box" style="margin-bottom:24px;">
+          <h3 style="margin-bottom:10px;">Calculateur de commission</h3>
+          <p class="note" style="margin-bottom:12px;">Entrez le prix de vente en USD pour voir la part de chaque partie. La commission est de 5 %.</p>
+          <div class="form-row">
+            <label for="calcPrice">Prix de vente (USD)</label>
+            <input type="number" id="calcPrice" min="0" step="0.01" placeholder="Ex : 20">
+          </div>
+          <div id="calcResult" class="note" style="font-size:1rem;line-height:1.9;"></div>
+        </div>
         <form class="form-box" id="vendorForm">
           <input type="hidden" name="_subject" value="Nouvelle inscription vendeur - ALIXON AI STUDIO">
           <input type="hidden" name="type" value="Inscription vendeur">
@@ -1173,6 +1182,31 @@
 
       renderProducts();
       renderCart();
+    })();
+  </script>
+
+  <script>
+    /* Calculateur de commission 5 % */
+    (function () {
+      var input = document.getElementById("calcPrice");
+      var result = document.getElementById("calcResult");
+      if (!input || !result) return;
+      function fmt(n) { return n.toFixed(2).replace(".", ",") + " USD"; }
+      function update() {
+        var price = parseFloat(input.value);
+        if (isNaN(price) || price <= 0) {
+          result.textContent = "Entrez un prix pou wè rezilta a.";
+          return;
+        }
+        var commission = Math.round(price * 5) / 100;
+        var vendeur = Math.round((price - commission) * 100) / 100;
+        result.innerHTML =
+          "Vant : <strong>" + fmt(price) + "</strong><br>" +
+          "ALIXON AI STUDIO (5 %) : <strong>" + fmt(commission) + "</strong><br>" +
+          "Vandè a resevwa : <strong>" + fmt(vendeur) + "</strong>";
+      }
+      input.addEventListener("input", update);
+      update();
     })();
   </script>
 
