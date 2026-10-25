@@ -465,7 +465,7 @@
     <section id="inscription-vendeur">
       <div class="container">
         <h2>INSCRIPTION VENDEUR</h2>
-        <p class="lead">Vous voulez vendre vos produits sur ALIXON AI STUDIO ? Remplissez ce formulaire. Frais d'inscription unique : 5 USD, payés par MonCash ou Natcash après validation de votre demande. Ensuite, ALIXON AI STUDIO garde 5 % sur chaque vente.</p>
+        <p class="lead">Vous voulez vendre vos produits sur ALIXON AI STUDIO ? Remplissez ce formulaire. L'inscription est gratuite. ALIXON AI STUDIO garde seulement 5 % sur chaque vente réalisée.</p>
         <div class="form-box" style="margin-bottom:24px;">
           <h3 style="margin-bottom:10px;">Calculateur de commission</h3>
           <p class="note" style="margin-bottom:12px;">Entrez le prix de vente en USD pour voir la part de chaque partie. La commission est de 5 %.</p>
@@ -517,7 +517,7 @@
           </div>
           <div class="form-row" style="display:flex;gap:10px;align-items:flex-start;">
             <input type="checkbox" id="vConsent" name="consent" value="oui" required style="margin-top:4px;width:18px;height:18px;">
-            <label for="vConsent" style="font-weight:400;">J'accepte les conditions : inscription validée avant publication ; frais d'inscription unique de 5 USD payé par MonCash ou Natcash ; ALIXON AI STUDIO garde 5 % du prix de chaque vente réalisée sur le site, et verse le reste au vendeur dans un délai de 3 heures après confirmation du paiement du client. Un remboursement annulé ne donne lieu à aucun versement.</label>
+            <label for="vConsent" style="font-weight:400;">J'accepte les conditions : inscription validée avant publication ; inscription gratuite ; ALIXON AI STUDIO garde 5 % du prix de chaque vente réalisée sur le site, et verse le reste au vendeur dans un délai de 3 heures après confirmation du paiement du client. Un remboursement annulé ne donne lieu à aucun versement.</label>
           </div>
           <button type="submit" class="btn" style="width:100%;">Envoyer mon inscription</button>
           <div class="form-status" id="vendorStatus" role="status"></div>
@@ -605,14 +605,28 @@
       </div>
     </section>
 
+    <!-- CRÉER UNE VIDÉO IA -->
+    <section id="video-ia">
+      <div class="container">
+        <h2>CRÉEZ VOTRE VIDÉO IA</h2>
+        <p class="lead">Vous avez une idée de vidéo ? Décrivez-la, et nous la créons avec l'intelligence artificielle pour vous.</p>
+        <div class="card" style="max-width:560px;margin:0 auto;text-align:center;">
+          <div class="price" style="font-size:1.4rem;">500 gourdes par vidéo</div>
+          <p>Vous décrivez votre idée dans le formulaire de commande. Nous vous confirmons la durée et le délai, puis nous créons la vidéo. Le paiement se fait par MonCash ou Natcash après confirmation.</p>
+          <button class="btn" data-service="Vidéos publicitaires avec IA" style="width:100%;margin-top:14px;">Commander ma vidéo IA</button>
+          <p class="note" style="margin-top:12px;">Vidéo créée avec l'IA. Nous ne garantissons pas un résultat précis à 100 % : nous discutons du projet avant de commencer.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- VENDEZ AVEC NOUS -->
     <section id="vendre">
       <div class="container">
         <h2>VENDEZ AVEC NOUS</h2>
-        <p class="lead">Vous avez des produits à vendre en ligne ? Publiez-les sur notre site avec un <strong>frais d'inscription unique de 5 USD</strong>. Ensuite, nous gardons <strong>5 %</strong> sur chaque vente.</p>
+        <p class="lead">Vous avez des produits à vendre en ligne ? Publiez-les sur notre site <strong>gratuitement</strong>. Nous gardons seulement <strong>5 %</strong> sur chaque vente.</p>
         <div class="steps">
           <div class="step"><div class="num">1</div><p>Inscrivez-vous avec le formulaire de la section Commander.</p></div>
-          <div class="step"><div class="num">2</div><p>Payez 5 USD une seule fois via <strong>MonCash</strong> ou <strong>Natcash</strong>.</p></div>
+          <div class="step"><div class="num">2</div><p>Inscription gratuite : aucun frais à payer pour vous inscrire.</p></div>
           <div class="step"><div class="num">3</div><p>Envoyez la preuve de paiement sur WhatsApp.</p></div>
           <div class="step"><div class="num">4</div><p>Vos produits sont publiés après confirmation du paiement.</p></div>
         </div>
@@ -1184,6 +1198,7 @@
       renderCart();
     })();
   </script>
+
 
   <script>
     /* Calculateur de commission 5 % */
