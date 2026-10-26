@@ -230,6 +230,7 @@
         <a href="#tarifs">Tarifs</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#commander">Commander</a>
+        <a href="#agents">Devenir agent</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -461,6 +462,55 @@
       </div>
     </section>
 
+    <!-- DEVENIR AGENT -->
+    <section class="alt" id="agents">
+      <div class="container">
+        <h2>DEVENIR AGENT</h2>
+        <p class="lead">Partagez nos produits sur vos réseaux sociaux et gagnez une commission sur chaque vente faite avec votre code agent. Inscription gratuite.</p>
+        <div class="card" style="max-width:680px;margin:0 auto 24px;">
+          <h3>Comment ça marche ?</h3>
+          <p>1. Inscrivez-vous avec le formulaire ci-dessous.<br>2. Vous recevez votre <strong>code agent</strong>.<br>3. Partagez les produits sur TikTok, Facebook, Instagram ou WhatsApp.<br>4. Le client écrit votre code dans le formulaire de commande.<br>5. Nous vérifions la vente et nous vous payons.</p>
+          <p class="note">Pour éviter les erreurs, chaque partage doit être envoyé avec le lien de la publication. Les fausses déclarations entraînent l'exclusion.</p>
+        </div>
+        <form class="form-box" id="agentForm">
+          <input type="hidden" name="_subject" value="Nouvelle inscription agent - ALIXON AI STUDIO">
+          <input type="hidden" name="type" value="Inscription agent">
+          <div class="two-cols">
+            <div class="form-row">
+              <label for="agName">Votre nom <span class="req">*</span></label>
+              <input type="text" id="agName" name="name" required>
+            </div>
+            <div class="form-row">
+              <label for="agPhone">WhatsApp (avec indicatif) <span class="req">*</span></label>
+              <input type="text" id="agPhone" name="whatsapp" required placeholder="Ex : 50942895897">
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="agPlatform">Où partagez-vous ? <span class="req">*</span></label>
+            <select id="agPlatform" name="plateforme" required>
+              <option value="">Choisissez</option>
+              <option>TikTok</option>
+              <option>Facebook</option>
+              <option>Instagram</option>
+              <option>WhatsApp</option>
+              <option>Plusieurs plateformes</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="agProof">Lien de votre publication (preuve de partage) <span class="req">*</span></label>
+            <input type="text" id="agProof" name="preuve" required placeholder="https://...">
+            <p class="note" style="margin-top:6px;">Envoyez le lien de chaque publication où vous partagez un produit. Sans lien, la vente ne sera pas comptée.</p>
+          </div>
+          <div class="form-row" style="display:flex;gap:10px;align-items:flex-start;">
+            <input type="checkbox" id="agConsent" name="consent" value="oui" required style="margin-top:4px;width:18px;height:18px;">
+            <label for="agConsent" style="font-weight:400;">Je m'engage à partager les produits honnêtement, à ne pas envoyer de faux liens ni de fausses ventes, et j'accepte que ma commission soit versée après vérification.</label>
+          </div>
+          <button type="submit" class="btn" style="width:100%;">Envoyer mon inscription agent</button>
+          <div class="form-status" id="agentStatus" role="status"></div>
+        </form>
+      </div>
+    </section>
+
     <!-- INSCRIPTION VENDEUR -->
     <section id="inscription-vendeur">
       <div class="container">
@@ -470,8 +520,8 @@
           <h3 style="margin-bottom:10px;">Calculateur de commission</h3>
           <p class="note" style="margin-bottom:12px;">Entrez le prix de vente en USD pour voir la part de chaque partie. La commission est de 5 %.</p>
           <div class="form-row">
-            <label for="calcPrice">Prix de vente (USD)</label>
-            <input type="number" id="calcPrice" min="0" step="0.01" placeholder="Ex : 20">
+            <label for="calcPrice">Prix de vente (gourdes)</label>
+            <input type="number" id="calcPrice" min="0" step="1" placeholder="Ex : 1000">
           </div>
           <div id="calcResult" class="note" style="font-size:1rem;line-height:1.9;"></div>
         </div>
@@ -724,6 +774,10 @@
           <div class="form-row">
             <label for="description">Description détaillée du projet <span class="req">*</span></label>
             <textarea id="description" name="description" required placeholder="Produit, public visé, message, style souhaité..."></textarea>
+          </div>
+          <div class="form-row">
+            <label for="agentCode">Code agent (si un agent vous a recommandé)</label>
+            <input type="text" id="agentCode" name="code_agent" placeholder="Ex : AG-JEAN">
           </div>
           <div class="form-row">
             <label for="reference">Lien vers un exemple (facultatif)</label>
@@ -1201,24 +1255,26 @@
 
 
   <script>
-    /* Calculateur de commission 5 % */
+    /* Calculateur de commission 5 % (entrée en gourdes) */
     (function () {
       var input = document.getElementById("calcPrice");
       var result = document.getElementById("calcResult");
       if (!input || !result) return;
-      function fmt(n) { return n.toFixed(2).replace(".", ",") + " USD"; }
+      var TAUX_HTG = 131;
+      function htg(n) { return Math.round(n).toLocaleString("fr-FR") + " HTG"; }
+      function usd(n) { return (n / TAUX_HTG).toFixed(2).replace(".", ",") + " USD"; }
       function update() {
         var price = parseFloat(input.value);
         if (isNaN(price) || price <= 0) {
-          result.textContent = "Entrez un prix pou wè rezilta a.";
+          result.textContent = "Entrez un prix en gourdes pou wè rezilta a.";
           return;
         }
         var commission = Math.round(price * 5) / 100;
-        var vendeur = Math.round((price - commission) * 100) / 100;
+        var vendeur = price - commission;
         result.innerHTML =
-          "Vant : <strong>" + fmt(price) + "</strong><br>" +
-          "ALIXON AI STUDIO (5 %) : <strong>" + fmt(commission) + "</strong><br>" +
-          "Vandè a resevwa : <strong>" + fmt(vendeur) + "</strong>";
+          "Vant : <strong>" + htg(price) + "</strong> (≈ " + usd(price) + ")<br>" +
+          "ALIXON AI STUDIO (5 %) : <strong>" + htg(commission) + "</strong> (≈ " + usd(commission) + ")<br>" +
+          "Vandè a resevwa : <strong>" + htg(vendeur) + "</strong> (≈ " + usd(vendeur) + ")";
       }
       input.addEventListener("input", update);
       update();
@@ -1268,6 +1324,39 @@
           o.textContent = name;
           sel.appendChild(o);
         });
+      });
+    })();
+  </script>
+
+  <script>
+    /* Inscription agent : envoi via Formspree */
+    (function () {
+      var form = document.getElementById("agentForm");
+      if (!form) return;
+      var FORM_ENDPOINT = "https://formspree.io/f/mdearagk";
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        var status = document.getElementById("agentStatus");
+        status.textContent = "Envoi en cours...";
+        status.className = "form-status show ok";
+        try {
+          var response = await fetch(FORM_ENDPOINT, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" }
+          });
+          if (response.ok) {
+            form.reset();
+            status.textContent = "Merci ! Votre inscription agent a été envoyée. Nous vous contacterons sur WhatsApp avec votre code agent.";
+            status.className = "form-status show ok";
+          } else {
+            status.textContent = "Une erreur est survenue. Veuillez réessayer.";
+            status.className = "form-status show error";
+          }
+        } catch (err) {
+          status.textContent = "Connexion impossible. Vérifiez votre Internet et réessayez.";
+          status.className = "form-status show error";
+        }
       });
     })();
   </script>
